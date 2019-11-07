@@ -9,7 +9,7 @@ class Connection():
                 password="postgres",
                 host="127.0.0.1",
                 port="5432",
-                database="links")
+                database="projetoFinal")
             self.connection.autocommit = True
             self.cursor = self.connection.cursor()
 
@@ -30,16 +30,4 @@ class Connection():
         except:
             return ('Falha ao executarSQLRetorno')
 
-    def executor(self):
-        self.cursor.execute('CREATE TABLE IF NOT EXISTS users '
-                            '(id_usuario serial primary key,'
-                            'usuario varchar(30) not null unique)')
-        self.cursor.execute('CREATE TABLE IF NOT EXISTS links '
-                            '(id serial primary key,'
-                            'hits integer not null,'
-                            'url varchar(100) not null,'
-                            'shorturl varchar(100) not null unique,'
-                            'usuario_id integer not null,'
-                            'FOREIGN KEY (usuario_id) '
-                            'REFERENCES users(id_usuario))')
 
